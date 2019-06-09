@@ -17,7 +17,23 @@ def calculate_average_grade(my_json_filepath):
 
 if __name__ == "__main__":
 
-    selected_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "gradebook.json")
+    #
+    # CAPTURE USER INPUTS
+    #
+
+    year = input("Please select a year (2018 or 2019):")
+
+    if year not in ["2018", "2019"]:
+        print("OH, INVALID SELECTION. PLEASE TRY AGAIN...")
+        exit()
+
+    print("SELECTED YEAR:", year)
+
+    #
+    # PROCESS DATA AND DISPLAY OUTPUTS
+    #
+
+    selected_filepath = os.path.join(os.path.dirname(__file__), "..", "data", f"gradebook_{year}.json")
     print("PARSING A LOCAL JSON FILE:", selected_filepath)
 
     if not os.path.isfile(selected_filepath):
