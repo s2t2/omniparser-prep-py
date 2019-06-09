@@ -3,7 +3,18 @@ import csv
 import statistics
 
 def calculate_average_grade(my_csv_filepath):
-    return 80
+    rows = []
+
+    with open(my_csv_filepath, "r") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for od in reader:
+            rows.append(dict(od))
+
+    grades = [float(r["final_grade"]) for r in rows]
+
+    average_grade = statistics.mean(grades)
+
+    return average_grade
 
 if __name__ == "__main__":
 
