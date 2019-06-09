@@ -3,7 +3,7 @@
 ## Setup
 
 ```sh
-conda create -n omniparser-env python=3.7
+conda create -n omniparser-env python=3.7 # (first time only)
 conda activate omniparser-env
 ```
 
@@ -15,6 +15,7 @@ pip install -r requirements.txt
 
 ```sh
 python app/json_parser.py
+pytest test/json_parser_test.py
 
 python app/txt_parser.py
 
