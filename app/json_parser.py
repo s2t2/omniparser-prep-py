@@ -1,9 +1,19 @@
 import os
-import csv
+import json
 import statistics
 
-def calculate_average_grade(my_csv_filepath):
-    return 80
+def calculate_average_grade(my_json_filepath):
+
+    with open(my_json_filepath, "r") as json_file:
+        file_contents = json_file.read()
+
+    gradebook = json.loads(file_contents)
+
+    grades = [s["finalGrade"] for s in gradebook["students"]] #> [86.7, 95.1, 60.3, 99.8, 97.4, 85.5, 97.2, 98.0, 93.9, 92.5]
+
+    average_grade = statistics.mean(grades) #>
+
+    return average_grade
 
 if __name__ == "__main__":
 
@@ -23,8 +33,8 @@ if __name__ == "__main__":
     # PROCESS DATA AND DISPLAY OUTPUTS
     #
 
-    selected_filepath = os.path.join(os.path.dirname(__file__), "..", "data", f"gradebook_{year}.csv")
-    print("PARSING A LOCAL CSV FILE:", selected_filepath)
+    selected_filepath = os.path.join(os.path.dirname(__file__), "..", "data", f"gradebook_{year}.json")
+    print("PARSING A LOCAL JSON FILE:", selected_filepath)
 
     if not os.path.isfile(selected_filepath):
         print("OH, THAT FILE DOESN'T EXIST. PLEASE PLACE A FILE THERE OR CHECK YOUR FILEPATH...")
