@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # PROCESS DATA AND DISPLAY OUTPUTS
     #
 
-    selected_filepath = os.path.join(os.path.dirname(__file__), "..", "data", f"daily_prices_{selected_symbol.lower()}.json")
+    selected_filepath = os.path.join(os.path.dirname(__file__), "..", "data", f"stock_prices_{selected_symbol.lower()}.json")
     print("PARSING A LOCAL JSON FILE:", selected_filepath)
 
     if not os.path.isfile(selected_filepath):

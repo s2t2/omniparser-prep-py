@@ -2,7 +2,7 @@ import os
 import json
 import statistics
 
-def parse_average_grade(my_json_filepath):
+def calculate_average_grade(my_json_filepath):
 
     with open(my_json_filepath, "r") as json_file:
         file_contents = json_file.read()
@@ -24,6 +24,6 @@ if __name__ == "__main__":
         print("OH, THAT FILE DOESN'T EXIST. PLEASE PLACE A FILE THERE OR CHECK YOUR FILEPATH...")
         exit()
 
-    average_grade = parse_average_grade(selected_filepath)
+    average_grade = calculate_average_grade(selected_filepath)
 
     print("AVERAGE GRADE:", average_grade)

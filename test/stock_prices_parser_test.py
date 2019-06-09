@@ -8,13 +8,13 @@ def test_processing_of_user_inputs():
 
 def test_latest_closing_price():
 
-    msft_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "daily_prices_msft.json")
+    msft_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "stock_prices_msft.json")
     assert latest_closing_price(msft_filepath) == "131.4000"
 
-    aapl_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "daily_prices_aapl.json")
+    aapl_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "stock_prices_aapl.json")
     assert latest_closing_price(aapl_filepath) == "190.1500"
 
-    goog_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "daily_prices_goog.json")
+    goog_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "stock_prices_goog.json")
     assert latest_closing_price(goog_filepath) == "1066.0400"
 
 def test_to_usd():
