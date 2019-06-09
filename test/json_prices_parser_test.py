@@ -1,6 +1,6 @@
 import os
 
-from app.json_parser import latest_closing_price, to_usd
+from app.json_prices_parser import latest_closing_price, to_usd
 
 def test_processing_of_user_inputs():
     assert "goog".upper() == "GOOG"

@@ -14,8 +14,11 @@ pip install -r requirements.txt
 ## Usage
 
 ```sh
-python app/json_parser.py
-pytest test/json_parser_test.py
+python app/json_gradebook_parser.py
+pytest test/json_gradebook_parser_test.py
+
+python app/json_prices_parser.py
+pytest test/json_prices_parser_test.py
 
 python app/txt_parser.py
 
