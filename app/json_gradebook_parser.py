@@ -1,5 +1,6 @@
 import os
 import json
+import statistics
 
 def parse_average_grade(my_json_filepath):
 
@@ -8,7 +9,11 @@ def parse_average_grade(my_json_filepath):
 
     gradebook = json.loads(file_contents)
 
-    return 80
+    grades = [s["finalGrade"] for s in gradebook["students"]] #> [86.7, 95.1, 60.3, 99.8, 97.4, 85.5, 97.2, 98.0, 93.9, 92.5]
+
+    average_grade = statistics.mean(grades) #>
+
+    return average_grade
 
 if __name__ == "__main__":
 
@@ -21,4 +26,4 @@ if __name__ == "__main__":
 
     average_grade = parse_average_grade(selected_filepath)
 
-    print("AVERAGE GRADE:", avg)
+    print("AVERAGE GRADE:", average_grade)
