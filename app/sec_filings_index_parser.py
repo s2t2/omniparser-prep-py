@@ -3,28 +3,61 @@ import pandas as pd
 
 ARCHIVES_URL = "https://www.sec.gov/Archives"
 
+#def find_filing_url(filings_filepath, company_name, form_type):
+#    """
+#    Example: find_filing_url("path/to/filings_index.txt", form_type="10-K", company_name="AMAZON COM INC")
+#    """
+#
+#    df = pd.read_csv(filings_filepath, sep="|", skiprows=0)
+#    #https://stackoverflow.com/questions/24251219/pandas-read-csv-low-memory-and-dtype-options
+#    #https://stackoverflow.com/a/29816143/670433
+#    # dtype={'user_id': int}
+#
+#    breakpoint()
+#
+#    #filing_row = df[df["Company Name"] == company_name]
+#
+#    #filing_row = df[df["Company Name"] == company_name and df["Form Type"] == form_type] # NOPE
+#
+#    #filing_row = df[df["Company Name"] == company_name][df["Form Type"] == form_type]
+#    #> UserWarning: Boolean Series key will be reindexed to match DataFrame index
+#    # https://stackoverflow.com/questions/41710789/boolean-series-key-will-be-reindexed-to-match-dataframe-index
+#
+#    filing_rows = df[df["Company Name"] == company_name]
+#    filing_rows =  filing_rows[filing_rows["Form Type"] == form_type]
+#
+#    # https://stackoverflow.com/questions/25254016/pandas-get-first-row-value-of-a-given-column
+#    filing = filing_rows.iloc[0].to_dict() #> {'CIK': '1018724', 'Company Name': 'AMAZON COM INC', 'Form Type': '10-K', 'Date Filed': '2019-02-01', 'Filename': 'edgar/data/1018724/0001018724-19-000004.txt'}
+#
+#    filing_address = filing["Filename"] #> 'edgar/data/1018724/0001018724-19-000004.txt'
+#
+#    filing_url = f"{ARCHIVES_URL}/{filing_address}" #> 'https://www.sec.gov/Archives/edgar/data/1018724/0001018724-19-000004.txt'
+#
+#    return filing_url
+
 def find_filing_url(filings_filepath, company_name, form_type):
     """
     Example: find_filing_url("path/to/filings_index.txt", form_type="10-K", company_name="AMAZON COM INC")
     """
 
-    df = pd.read_csv(filings_filepath, sep="|", skiprows=0, verbose=True)
+    column_datatypes = {"CIK": str, "Company Name": str, "Form Type": str, "Date Filed": str, "Filename": str}
 
-    #breakpoint()
+    df = pd.read_csv(filings_filepath, sep="|", skiprows=0, dtype=column_datatypes)
 
-    #filing_row = df[df["Company Name"] == company_name]
+    filings = df.to_dict('records')
 
-    #filing_row = df[df["Company Name"] == company_name and df["Form Type"] == form_type] # NOPE
+    filings = [f for f in filings if f["Company Name"] == company_name and f["Form Type"] == form_type]
 
-    #filing_row = df[df["Company Name"] == company_name][df["Form Type"] == form_type]
-    #> UserWarning: Boolean Series key will be reindexed to match DataFrame index
-    # https://stackoverflow.com/questions/41710789/boolean-series-key-will-be-reindexed-to-match-dataframe-index
+    #try:
+    #    pass
+    #except expression as identifier:
+    #    pass
+    #else:
+    #    pass
+    #finally:
+    #    pass
 
-    filing_rows = df[df["Company Name"] == company_name]
-    filing_rows =  filing_rows[filing_rows["Form Type"] == form_type]
-
-    # https://stackoverflow.com/questions/25254016/pandas-get-first-row-value-of-a-given-column
-    filing = filing_rows.iloc[0].to_dict() #> {'CIK': '1018724', 'Company Name': 'AMAZON COM INC', 'Form Type': '10-K', 'Date Filed': '2019-02-01', 'Filename': 'edgar/data/1018724/0001018724-19-000004.txt'}
+    filing = filings[0] # todo: handle key error
 
     filing_address = filing["Filename"] #> 'edgar/data/1018724/0001018724-19-000004.txt'
 
